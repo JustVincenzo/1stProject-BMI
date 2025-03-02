@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
+# Main sistem
 def calculate_bmi(weight, height, system):
     if system == "imperial":
         weight = weight * 0.453592  # Pounds to kg
@@ -8,6 +9,9 @@ def calculate_bmi(weight, height, system):
     height_m = height / 100  # cm to m
     return weight / (height_m ** 2)
 
+#Lib of BMI
+
+# Asian
 def classify_bmi(bmi, is_asian, age):
     if age < 18:
         return "BMI calculation may not be accurate for minors."
@@ -20,6 +24,7 @@ def classify_bmi(bmi, is_asian, age):
             return "Overweight"
         else:
             return "Obesity"
+#Not Asian
     else:
         if bmi < 18.5:
             return "Underweight"
@@ -30,6 +35,7 @@ def classify_bmi(bmi, is_asian, age):
         else:
             return "Obesity"
 
+#Calculate
 def calculate():
     try:
         age = int(entry_age.get())
@@ -41,13 +47,16 @@ def calculate():
         
         bmi = calculate_bmi(weight, height, system)
         classification = classify_bmi(bmi, is_asian, age)
-        
+
+#Response
         result = f"Your BMI is: {bmi:.2f}\nClassification: {classification}\n"
         result += "It is recommended to follow up with a nutrition specialist." if follows_diet else "Maintain a healthy lifestyle with a balanced diet and exercise."
         
         messagebox.showinfo("BMI Result", result)
     except ValueError:
         messagebox.showerror("Error", "Please enter valid values.")
+
+#Window of the program
 
 # Create main window
 window = tk.Tk()
